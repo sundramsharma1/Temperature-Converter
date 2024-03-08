@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap" rel="stylesheet">
+    <title>Temperature Converter</title>
+</head>
+<body>
+    <h1>
+        Temprature Converter
+    </h1>
+   <form action="" name="form">
+       <div class="wrapper">
+           <div class="calculator_value">
+               <label class="form-label">Enter Your Value</label><br>
+               <input type="number" name="value" id="input_value" class="form_input">
+           </div>
+           <br>
+           <br>
+           <div class="main">
+               <div class="calculator_input">
+                   <label for="">From:-</label><br>
+                   <select name="input" id="input" class="from_option">
+                       <option value="celsius">celsius(°C)</option>
+                       <option value="fahrenheit">fahrenheit(°F)</option>
+                       <option value="kelvin">kelvin(K)</option>
+                   </select>
+               </div>
+               <div class="calculator_input">
+                <label for="">To:-</label><br>
+                <select name="output" id="output" class="from_option">
+                    <option value="celsius">celsius(°C)</option>
+                    <option value="fahrenheit">fahrenheit(°F)</option>
+                    <option value="kelvin">kelvin(K)</option>
+                </select>
+                </div>
+           </div><br>
+           <button type="button" id="convert" class="cal_btn1" onclick="convertTemprature()">Convert</button><br><br>
+           <div class="result_area">
+               <label for="">Your Answer Is :-</label><br>
+               <input type="text" value="" id="result" class="form_answer">
+           </div>
+           <br>
+           <br>
+           <button type="button" id="clear" class="cal_btn2" onclick="reset()">Reset</button><br>    
+       </div>
+       
+       <footer>
+        <marquee behavior="alternate" direction="right" class="name" >@SUNDRAM SHARMA</marquee>
+       </footer>  
+   </form>
+        
+   
+   <script>
+       function convertTemprature(){
+           let val = document.getElementById("input_value");
+           let result = document.getElementById("result");
+           let input = document.getElementById("input");
+           let output = document.getElementById("output");
+
+           val.addEventListener("keyup", convertTemprature);
+           input.addEventListener("change", convertTemprature);
+           output.addEventListener("change", convertTemprature);
+
+          let inputValue = input.value;
+          let outputValue = output.value;
+
+             //   celsius
+
+            // (0°C × 9/5) + 32 = 32°F
+
+            // 0°C + 273.15 = 273.15K
+
+          if(inputValue === "celsius" && outputValue === "fahrenheit"){
+              result.value = Number((val.value)*9/5) +32;
+          }else if (inputValue === "celsius" && outputValue === "kelvin"){
+              result.value = Number(val.value)+273.15;
+          }else if (inputValue === "celsius" && outputValue === "celsius"){
+              result.value = val.value;
+          }
+
+        //   fahrenheit
+
+        // (0°F − 32) × 5/9 = -17.78°C
+
+        // (0°F − 32) × 5/9 + 273.15 = 255.372K
+
+           if(inputValue === "fahrenheit" && outputValue === "celsius"){
+              result.value = Number((val.value -32) *5) /9;
+           }else if (inputValue === "fahrenheit" && outputValue === "kelvin"){
+               result.value = Number((val.value -32) *5/9) +273.15; 
+           }else if(inputValue === "fahrenheit" && outputValue === "fahrenheit"){
+               result.value = val.value;
+           }
+
+        //    kelvin
+
+        // 0K − 273.15 = -273.1°C
+
+        // (0K − 273.15) × 9/5 + 32 = -459.7°F
+
+        if(inputValue === "kelvin" && outputValue === "celsius"){
+            result.value = Number(val.value) - 273.15;
+        }else if(inputValue === "kelvin" && outputValue === "fahrenheit"){
+            result.value = Number((val.value -273.15) *9/5) + 32;
+        }else if(inputValue === "kelvin" && outputValue === "kelvin"){
+            result.value = val.value;
+        }
+
+       }
+
+       function reset(){
+        convertTemprature();
+       }
+   </script> 
+  
+  
+  
+  </body>
+</html>
